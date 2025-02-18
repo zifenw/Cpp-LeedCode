@@ -29,3 +29,20 @@
 ```
 - don't need use `vector.size()` if not need run O(n)
 - `auto rit1 = nums1.rbegin() + n;` auto 让编译器自动推导变量的类型，减少代码冗余，提高可读性; rbegin() 是 反向迭代器（reverse iterator），它指向 nums1 最后一个元素（即 nums1.end() - 1）。
+
+## 108. Convert Sorted Array to Binary Search Tree
+- 标准的递归创建BST
+```cpp
+    TreeNode* buildBST(vector<int>& nums, int left, int right) {
+        if (left > right) return nullptr;
+
+        int mid = left + (right - left) / 2;
+        TreeNode* root = new TreeNode(nums[mid]);
+
+        root->left = buildBST(nums, left, mid - 1);
+        root->right = buildBST(nums, mid + 1, right);
+        
+        return root;
+    }
+```
+- BS重点是left, right, mid=left+(right-left)/2
