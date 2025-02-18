@@ -12,3 +12,20 @@
 - `vector.begin()`
 - `vector.end()`
 - `digits.insert(digits.begin(), 1)`
+
+## 88. Merge Sorted Array
+❌错误代码：没有正确考虑 nums1 末尾的 0 值，需要从 后向前 归并，避免额外的插入操作
+```c++
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int p1 = 0, p2 = 0;
+        while (p2 < nums2.size()) {
+            if (nums2[p2] <= nums1[p1]) {
+                nums1.insert(nums1.begin() + p1, nums2[p2]);
+                p1++;
+            }
+            p2++;
+        }
+    }
+```
+- don't need use `vector.size()` if not need run O(n)
+- `auto rit1 = nums1.rbegin() + n;` auto 让编译器自动推导变量的类型，减少代码冗余，提高可读性; rbegin() 是 反向迭代器（reverse iterator），它指向 nums1 最后一个元素（即 nums1.end() - 1）。
