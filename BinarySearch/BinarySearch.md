@@ -76,3 +76,44 @@ nums.begin() 是 nums 的起始迭代器。
 - `#include <set>` 有序的容器，它以特定的顺序维护其元素，默认情况下通常按升序排序
 - `#include <unordered_set>` 无序的容器，它不保证其元素的任何特定顺序。它通常使用哈希表来实现。
 - `insert()`, `erase()`(remove), `size()`, `empty()`, `clear()`(removeAll), `count()` (contain) return bool, `find()` return index, `lower_bound()`, `upper_bound()`, `swap()`
+
+## 1539. Kth Missing Positive Number
+```cpp
+// O(n)
+    int findKthPositive(vector<int>& arr, int k) {
+        int missing_count = 0;
+        int num = 1;
+        int index = 0;
+        while (missing_count != k) {
+            if (index < arr.size() && arr[index] == num) {
+                index++;
+            } else {
+                missing_count++;
+            }
+            num++;
+        }
+        return index + k;  // same with num - 1;
+    }
+// O(logN) binary search
+    int findKthPositive(vector<int>& arr, int k) {
+        int left = 0;
+        int right = arr.size() - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int missing = arr[mid] - mid - 1;
+            if (missing < k) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        // left 指向的是数组中第一个满足“缺失数数量大于或等于 k”的位置
+        // 换句话说，left 是第 k 个缺失数应该插入的位置
+        // 这 k 个数正常都应该插入到 left 之前
+        // left 之前有 left 个数
+        // left + k 就是插入后 left 之前的个数 [1, left + k]
+        // 最后一个是 left + k;
+        return left + k;
+    }
+```
+- 我们可以控制获得的left变成一个boundry，第一个满足或最后一个满足某个条件的位置
