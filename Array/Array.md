@@ -71,3 +71,93 @@ triangle[i].resize(i + 1, 1);
 ## 119. Pascal's Triangle II
 What the f**k!!!
 Just math!!!
+
+## 121. Best Time to Buy and Sell Stock
+找到前后顺序固定的最大差值(利润)    
+可以更具给出的example遍历进行条件判定    
+
+## 136. Single Number (XOR WHAT???)
+查找唯一的单独数字，其它都是pair  
+```CPP
+    int singleNumber(vector<int>& nums) {
+        int result = 0;
+        for (int num : nums) {
+            result ^= num;
+        }
+        return result;
+    }
+```
+4⊕1⊕2⊕1⊕2  
+**XOR**    
+100 ^ 001 = 101  
+101 ^ 010 = 111  
+111 ^ 001 = 110  
+110 ^ 010 = 100  
+
+a⊕a=0 (Any number XOR itself is 0)
+a⊕0=a (Any number XOR 0 remains unchanged)
+
+```
+nums = [4,1,2,1,2]
+Step-by-step XOR:
+4 ⊕ 1 ⊕ 2 ⊕ 1 ⊕ 2
+= (4 ⊕ (1 ⊕ 1) ⊕ (2 ⊕ 2))
+= (4 ⊕ 0 ⊕ 0)
+= 4
+```
+
+## 169. Majority Element
+查找element中超过一半的大多数  
+**Boyer-Moore Voting Algorithm**
+```cpp
+    int candidate = 0, count = 0;
+
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
+        }
+        count += (num == candidate)? 1 : -1;
+    }
+
+    return candidate;
+```
+当 count 为 0 时，算法会选择一个新的候选元素。实际上，count 变为 0 说明候选元素已经被其他元素“抵消”掉了，此时候选元素会被替换。
+
+如果 x 是多数元素，它会最终在计数上占优势。即使有其他元素也与 x 相同次数地出现，x 会由于它出现次数较多而在计算过程中维持候选身份。
+
+对于多数元素 x，它的出现次数超过其他元素的总和，因此无论其他元素如何抵消，x 的最终出现次数将始终超过任何其他候选元素。(正真的candidate的数量如果大于一半一定可以与所有不是的element相消后仍有剩余)  
+
+## 217. Contains Duplicate (hashtable/sorting)
+**find() for unsorted_set**
+find() 和 end() 都是iterator指针
+```
+If the element is found:
+
+find() returns an iterator pointing to the element in the set.
+
+For example: if num exists in the set, find(num) will return a valid iterator pointing to that element.
+
+If the element is not found:
+
+find() returns an iterator to seen.end(), which is a special iterator that marks the end of the container (i.e., it doesn't point to a valid element).
+```
+`seen.end()` points just beyond the last element
+`seen.insert(num)`
+`seen.find(num)`
+
+we can also sort directly:
+```cpp
+    bool containsDuplicate(vector<int>& nums) {
+     sort(nums.begin(),nums.end());
+     for(int i=0;i<nums.size()-1;i++){
+        if(nums[i]==nums[i+1]){
+          return true;
+          break;
+        }
+        
+     }
+     return false;
+
+    }
+```
+## 219. Contains Duplicate II
