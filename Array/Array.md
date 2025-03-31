@@ -46,3 +46,28 @@
     }
 ```
 - BS重点是left, right, mid=left+(right-left)/2
+
+## 118. Pascal's Triangle
+**Resize OR Declaring a vector**
+**Push_back OR array[i][j]**
+```cpp
+vector<int> vec;
+vector<int> vec2(5, 0);
+vector<int> vec3 = {1, 2, 3, 4, 5};
+
+// this problem
+vector<vector<int>> triangle(numRows);
+
+//resize
+vector<int> vec;  // Initially empty
+vec.resize(5, 0);
+vec.resize(10, 1);
+// Result after first resize: [0, 0, 0, 0, 0]
+// Final result: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+// this problem
+triangle[i].resize(i + 1, 1);
+```
+
+## 119. Pascal's Triangle II
+What the f**k!!!
+Just math!!!

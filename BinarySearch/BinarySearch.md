@@ -78,6 +78,7 @@ nums.begin() 是 nums 的起始迭代器。
 - `insert()`, `erase()`(remove), `size()`, `empty()`, `clear()`(removeAll), `count()` (contain) return bool, `find()` return index, `lower_bound()`, `upper_bound()`, `swap()`
 
 ## 1539. Kth Missing Positive Number
+- 我们可以控制获得的left变成一个boundry，第一个满足或最后一个满足某个条件的位置
 ```cpp
 // O(n)
     int findKthPositive(vector<int>& arr, int k) {
@@ -116,4 +117,3 @@ nums.begin() 是 nums 的起始迭代器。
         return left + k;
     }
 ```
-- 我们可以控制获得的left变成一个boundry，第一个满足或最后一个满足某个条件的位置
