@@ -24,6 +24,8 @@ group.append(k - groupsize(), fill);
 
 also the use of s.begin() and s.end()
 
+>**stoll(str)** change str to num
+
 >**vector<type> name** initialize the vector
 
 vector\<string\> result;
