@@ -20,6 +20,10 @@ group.append(k - groupsize(), fill);
 
 >**s.size()** size of the string
 
+>**reverse(s.begin(), s.end())** reverse the str
+
+also the use of s.begin() and s.end()
+
 >**vector<type> name** initialize the vector
 
 vector\<string\> result;
