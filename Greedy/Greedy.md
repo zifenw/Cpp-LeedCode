@@ -95,3 +95,32 @@ Explanation: There is no way to make a positive profit, so we never buy the stoc
 >简单的Sell Stock可当天买卖，所以只要有prices[i] < prices[i+1]就可以加入profit
 
 >但要注意Base case[1], 注意不要超出arraysize，i < prices.size() - 1和初始int profit = 0;
+
+# 134. Gas Station
+
+Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]  
+Output: 3  
+Explanation:  
+Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4  
+Travel to station 4. Your tank = 4 - 1 + 5 = 8  
+Travel to station 0. Your tank = 8 - 2 + 1 = 7  
+Travel to station 1. Your tank = 7 - 3 + 2 = 6  
+Travel to station 2. Your tank = 6 - 4 + 3 = 5  
+Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.  
+Therefore, return 3 as the starting index.  
+
+
+**只要currentGas小于0，说明从该站之前经过遍历的任意一个车站出发都不可以满足要求；只要totalGas最终小于0，说明总有一个站可以作为起点而满足要求**
+
+> **Hint** 平面直角坐标系中考虑任意曲线记录currentGas，从0开始如果一个非负曲线在某一个x值小于等于0的话取之前任意点为起始点（x轴会上移）都会导致到达该点时小于0。而如果低于x轴会重新记录起始点。
+
+> **Hint** 平面直角坐标系中考虑任意曲线记录totalGas，如果该曲线最终为非负。我们可以选择从曲线最低点作为起始点，新的一圈不会有任意点小于该最低点，也就是小于0
+
+>**return totalGas > 0 ? start : -1;** (判断标准 ? true返回值 : false返回值)
+
+# 179. Largest Number
+**使用sort对于[](string a, string b) { return a + b > b + a; }**
+
+**特殊情况：全是0，排序后第一个是"0" 就说明结果是 "0"**
+
+

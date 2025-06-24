@@ -4,6 +4,7 @@
         "xstring": "cpp",
         "string": "cpp",
         "cmath": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "algorithm": "cpp"
     }
 }
